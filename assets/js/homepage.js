@@ -35,8 +35,7 @@ if (repos.length === 0) {
             });
         } else {
             alert("Error: GitHub User Not Found");
-        }
-       
+        }  
     })
     .catch(function(error){
         // Notice this `.catch()`getting chained onto the end of the `.then()`method

@@ -11,7 +11,14 @@ var getRepoIssues = function(repo) {
             response.json().then(function(data){
                 // pass response data to dom function
                 displayIssues(data);
-            }); 
+
+                // check if api has paginated issues
+                if(response.headers.get("link")) {
+                
+                var displayWarning = function(repo) {
+                    // add text to warning container
+                    limitWarningEl.textContent = "To see more than 30 issues, visit";
+                };
         } else {
             alert("There was a problem with your request!");
         }
@@ -19,7 +26,6 @@ var getRepoIssues = function(repo) {
     // console.log(repo);
 
 };
-
 
 
 var displayIssues = function (issues) {
@@ -65,6 +71,11 @@ var displayIssues = function (issues) {
             response.json().then(function (data) {
                 // pass response data do dom function
                 displayIssues(data);
+
+                // check if api has paginated issues
+                if (response.headers.get("Link")) {
+                    console.log("repo has more than 30 issues");
+                }
             });
         } else {
             alert("There was a problem with your request!");
